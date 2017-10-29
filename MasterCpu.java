@@ -5,6 +5,7 @@ class MasterCpu
     private Processor[] processor;
     private Random random;
     Thread[] threads;
+    static int processNo;
     MasterCpu()
     {
         processor=new Processor[4];
@@ -53,7 +54,7 @@ class MasterCpu
     }
     void Schedule()
     {
-        for(int i=0;i<20;i++)
+        for(int i=0;i<processNo;i++)
         {
             int time=random.nextInt(400);
             int priority=random.nextInt(100);
