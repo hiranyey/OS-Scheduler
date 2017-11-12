@@ -48,6 +48,8 @@ public class SJF extends Algorithms
 
     @Override
     public void update() {
+    if(root!=null)
+    {
         root.TimeRemaining-=Main.BurstType;
         addGantt();
         try{
@@ -67,6 +69,7 @@ public class SJF extends Algorithms
             button.setText("ThroughPut:- "+String.valueOf(throughPut()));
 
         }
+    }
     }
 
     @Override
