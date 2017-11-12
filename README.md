@@ -17,6 +17,8 @@ This merge process takes:-
 * O(log n) for SJF(Shortest Job First) and PS(Priority Scheduling)  
 
 Each Processor show its own ThroughPut and Gantt Chart according to the algorithm chosen  
-Data Structure used are ArrayList,Leftist Heap
+Data Structure used are ArrayList,Leftist Heap,B Tree  
+[11/12/2017] Each Processor now has a file linked. After each CPU burst Something is written in the file.  
+Linking Between Processor and Files are done by B Trees.
 
  
