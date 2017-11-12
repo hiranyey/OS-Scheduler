@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class RR extends Algorithms
@@ -57,6 +59,16 @@ public class RR extends Algorithms
                 button.setText("ThroughPut:- "+String.valueOf(throughPut()));
             } else {
                 root.add(process);
+            }
+            try{
+
+                FileWriter fstream = new FileWriter(MasterCpu.Files.get(process.Id)+".txt",true);
+                BufferedWriter fbw = new BufferedWriter(fstream);
+                fbw.write("append txt...");
+                fbw.newLine();
+                fbw.close();
+            }catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
         }
     }

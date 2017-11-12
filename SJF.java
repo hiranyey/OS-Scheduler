@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class SJF extends Algorithms
@@ -48,6 +50,15 @@ public class SJF extends Algorithms
     public void update() {
         root.TimeRemaining-=Main.BurstType;
         addGantt();
+        try{
+            FileWriter fstream = new FileWriter(MasterCpu.Files.get(root.Id)+".txt",true);
+            BufferedWriter fbw = new BufferedWriter(fstream);
+            fbw.write("append txt...");
+            fbw.newLine();
+            fbw.close();
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
         if(root.TimeRemaining<=0)
         {
             Throughput-=root.Time;

@@ -6,9 +6,15 @@ class MasterCpu
     private Random random;
     Thread[] threads;
     static int processNo;
+    static BTree<Integer,String> Files;
+    private static final String CHAR_LIST =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    private static final int RANDOM_STRING_LENGTH = 10;
+
     MasterCpu()
     {
         processor=new Processor[4];
+        Files=new BTree<>();
         random=new Random();
         Form form=Main.Form.form;
         processor[0]=new Processor(form.Process1,form.textArea1,form.button1,form.list1);
@@ -20,37 +26,18 @@ class MasterCpu
             threads[i]=new Thread(processor[i]);
         }
     }
+    public String generateRandomString(){
+        StringBuffer randStr = new StringBuffer();
+        for(int i=0; i<RANDOM_STRING_LENGTH; i++){
+            int number =random.nextInt(CHAR_LIST.length());
+            char ch = CHAR_LIST.charAt(number);
+            randStr.append(ch);
+        }
+        return randStr.toString();
+    }
     private Thread Redefine(int i)
     {
         return new Thread(processor[i]);
-    }
-    void Schedule1()
-    {
-        for(int i=1;i<=20;i++)
-        {
-            int randomNumber=random.nextInt(4);
-            int time=random.nextInt(400);
-            int priority=random.nextInt(100);
-            processor[randomNumber].insert(time,priority,i);
-            if(!threads[randomNumber].isAlive())
-            {
-                threads[randomNumber]=Redefine(randomNumber);
-                threads[randomNumber].start();
-            }
-            int x=random.nextInt(4);
-            int y;
-            do{
-                y=random.nextInt(4);
-            }while (x==y);
-            if(Main.MethodType<2)
-                processor[x].algorithms.mergeProcess(processor[y].algorithms.getParent());
-            else
-                processor[x].algorithms.mergeProcess(processor[y].algorithms.getRoot());
-            processor[y].algorithms.clear();
-            processor[y].clear();
-            processor[x].algorithms.addNewProcess();
-
-        }
     }
     void Schedule()
     {
@@ -59,6 +46,7 @@ class MasterCpu
             int time=random.nextInt(400);
             int priority=random.nextInt(100);
             processor[i%4].insert(time,priority,i+1);
+            Files.put(i+1,generateRandomString());
             if(!threads[i%4].isAlive())
             {
                 threads[i%4]=Redefine(i%4);
@@ -82,7 +70,5 @@ class MasterCpu
         processor[y].algorithms.clear();
         processor[y].clear();
         processor[x].algorithms.addNewProcess();
-
     }
-
 }

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class FIFO extends Algorithms
@@ -59,6 +61,16 @@ public class FIFO extends Algorithms
                     area.append("ID:- " + String.valueOf(node.Id) + " Time:- " + String.valueOf(node.TimeRemaining) + " Priority:- " + String.valueOf(node.Priority) + "\n");
                 }
                 button.setText("ThroughPut:- "+String.valueOf(throughPut()));
+            }
+            try{
+
+                FileWriter fstream = new FileWriter(MasterCpu.Files.get(process.Id)+".txt",true);
+                BufferedWriter fbw = new BufferedWriter(fstream);
+                fbw.write("append txt...");
+                fbw.newLine();
+                fbw.close();
+            }catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
         }
     }
