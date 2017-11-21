@@ -48,17 +48,13 @@ public class PS extends Algorithms
     }
 
     @Override
-    public void update() 
-    {
-      if(root!=null)
-      {
+    public void update() {
         root.TimeRemaining-=Main.BurstType;
         addGantt();
         try{
-
             FileWriter fstream = new FileWriter(MasterCpu.Files.get(root.Id)+".txt",true);
             BufferedWriter fbw = new BufferedWriter(fstream);
-            fbw.write("append txt...");
+            fbw.write(Main.append);
             fbw.newLine();
             fbw.close();
         }catch (Exception e) {
@@ -72,7 +68,6 @@ public class PS extends Algorithms
             button.setText("ThroughPut:- "+String.valueOf(throughPut()));
 
         }
-      }
     }
 
     @Override

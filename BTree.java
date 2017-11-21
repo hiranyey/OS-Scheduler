@@ -20,24 +20,15 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         private Comparable key;
         private final Object val;
         private Node next;     // helper field to iterate over array entries
-        public Entry(Comparable key, Object val, Node next) {
+        private Entry(Comparable key, Object val, Node next) {
             this.key  = key;
             this.val  = val;
             this.next = next;
         }
     }
 
-    public BTree() {
+    BTree() {
         root = new Node(0);
-    }
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-   public int size() {
-        return n;
-    }
-  public int height() {
-        return height;
     }
 
    public Value get(Key key) {

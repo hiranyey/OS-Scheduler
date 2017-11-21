@@ -63,10 +63,9 @@ public class FIFO extends Algorithms
                 button.setText("ThroughPut:- "+String.valueOf(throughPut()));
             }
             try{
-
                 FileWriter fstream = new FileWriter(MasterCpu.Files.get(process.Id)+".txt",true);
                 BufferedWriter fbw = new BufferedWriter(fstream);
-                fbw.write("append txt...");
+                fbw.write(Main.append);
                 fbw.newLine();
                 fbw.close();
             }catch (Exception e) {
